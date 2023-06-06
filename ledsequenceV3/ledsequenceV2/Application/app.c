@@ -45,7 +45,7 @@ void APP_init(void)
 
 
 
-void APP_ledSequenceV_3 (void)
+void APP_start(void)
 {
 	while (1)
 	{

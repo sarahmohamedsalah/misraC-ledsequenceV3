@@ -22,7 +22,7 @@
 
 void APP_init(void);
 
-void APP_ledSequenceV_3 (void);
+void APP_start(void);
 
 
 void button0Task (uint8_t_* counter, uint8_t_ state);
