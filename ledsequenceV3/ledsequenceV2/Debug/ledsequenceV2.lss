@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001b0  00000000  00000000  000011f0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001e87  00000000  00000000  000013a0  2**0
+  6 .debug_info   00001e4e  00000000  00000000  000013a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000ba9  00000000  00000000  00003227  2**0
+  7 .debug_abbrev 00000b9c  00000000  00000000  000031ee  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001237  00000000  00000000  00003dd0  2**0
+  8 .debug_line   00001217  00000000  00000000  00003d8a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000044c  00000000  00000000  00005008  2**2
+  9 .debug_frame  0000044c  00000000  00000000  00004fa4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000ae4  00000000  00000000  00005454  2**0
+ 10 .debug_str    00000b3e  00000000  00000000  000053f0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000172a  00000000  00000000  00005f38  2**0
+ 11 .debug_loc    0000172a  00000000  00000000  00005f2e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000128  00000000  00000000  00007662  2**0
+ 12 .debug_ranges 00000128  00000000  00000000  00007658  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -226,7 +226,6 @@ void APP_init(void)
      184:	72 e4       	ldi	r23, 0x42	; 66
      186:	80 e0       	ldi	r24, 0x00	; 0
      188:	0e 94 b3 04 	call	0x966	; 0x966 <timer_set_time>
-	//timer_set_callback(TIMER_0, systemTask);
 	timer_resume(TIMER_0);
      18c:	80 e0       	ldi	r24, 0x00	; 0
      18e:	0e 94 da 05 	call	0xbb4	; 0xbb4 <timer_resume>
@@ -456,16 +455,16 @@ void button0Task (uint8_t_* counter, uint8_t_ state)
      2f4:	cf 91       	pop	r28
      2f6:	08 95       	ret
 
-000002f8 <APP_ledSequenceV_3>:
+000002f8 <APP_start>:
 }
 
 
 
-void APP_ledSequenceV_3 (void)
+void APP_start(void)
 {
      2f8:	cf 93       	push	r28
      2fa:	df 93       	push	r29
-     2fc:	00 d0       	rcall	.+0      	; 0x2fe <APP_ledSequenceV_3+0x6>
+     2fc:	00 d0       	rcall	.+0      	; 0x2fe <APP_start+0x6>
      2fe:	cd b7       	in	r28, 0x3d	; 61
      300:	de b7       	in	r29, 0x3e	; 62
 	while (1)
@@ -485,7 +484,7 @@ void APP_ledSequenceV_3 (void)
 		if (button0State)
      314:	8a 81       	ldd	r24, Y+2	; 0x02
      316:	88 23       	and	r24, r24
-     318:	49 f1       	breq	.+82     	; 0x36c <APP_ledSequenceV_3+0x74>
+     318:	49 f1       	breq	.+82     	; 0x36c <APP_start+0x74>
 		{
 			
 			BUTTON_read(BUTTON_0_PORT, BUTTON_0_Pin, &button0State);
@@ -498,7 +497,7 @@ void APP_ledSequenceV_3 (void)
 			if(button0State)
      328:	8a 81       	ldd	r24, Y+2	; 0x02
      32a:	88 23       	and	r24, r24
-     32c:	f9 f0       	breq	.+62     	; 0x36c <APP_ledSequenceV_3+0x74>
+     32c:	f9 f0       	breq	.+62     	; 0x36c <APP_start+0x74>
 			{
 				BUTTON_read(BUTTON_0_PORT, BUTTON_0_Pin, &button0State);
      32e:	ae 01       	movw	r20, r28
@@ -519,7 +518,7 @@ void APP_ledSequenceV_3 (void)
 				while(button0State)
      352:	8a 81       	ldd	r24, Y+2	; 0x02
      354:	88 23       	and	r24, r24
-     356:	51 f0       	breq	.+20     	; 0x36c <APP_ledSequenceV_3+0x74>
+     356:	51 f0       	breq	.+20     	; 0x36c <APP_start+0x74>
 				{
 					BUTTON_read(BUTTON_0_PORT, BUTTON_0_Pin, &button0State);
      358:	ae 01       	movw	r20, r28
@@ -536,7 +535,7 @@ void APP_ledSequenceV_3 (void)
 				while(button0State)
      366:	8a 81       	ldd	r24, Y+2	; 0x02
      368:	81 11       	cpse	r24, r1
-     36a:	f6 cf       	rjmp	.-20     	; 0x358 <APP_ledSequenceV_3+0x60>
+     36a:	f6 cf       	rjmp	.-20     	; 0x358 <APP_start+0x60>
 				}
 				
 			}
@@ -552,7 +551,7 @@ void APP_ledSequenceV_3 (void)
 		if (button1State)
      37a:	89 81       	ldd	r24, Y+1	; 0x01
      37c:	88 23       	and	r24, r24
-     37e:	09 f2       	breq	.-126    	; 0x302 <APP_ledSequenceV_3+0xa>
+     37e:	09 f2       	breq	.-126    	; 0x302 <APP_start+0xa>
 		{
 			//_delay_ms(60);
 			BUTTON_read(BUTTON_1_PORT, BUTTON_1_Pin, &button1State);
@@ -565,8 +564,8 @@ void APP_ledSequenceV_3 (void)
 			if(button1State)
      38e:	89 81       	ldd	r24, Y+1	; 0x01
      390:	88 23       	and	r24, r24
-     392:	09 f4       	brne	.+2      	; 0x396 <APP_ledSequenceV_3+0x9e>
-     394:	b6 cf       	rjmp	.-148    	; 0x302 <APP_ledSequenceV_3+0xa>
+     392:	09 f4       	brne	.+2      	; 0x396 <APP_start+0x9e>
+     394:	b6 cf       	rjmp	.-148    	; 0x302 <APP_start+0xa>
 			{
 				BUTTON_read(BUTTON_1_PORT, BUTTON_1_Pin, &button1State);
      396:	ae 01       	movw	r20, r28
@@ -584,8 +583,8 @@ void APP_ledSequenceV_3 (void)
 				while(button1State)
      3b2:	89 81       	ldd	r24, Y+1	; 0x01
      3b4:	88 23       	and	r24, r24
-     3b6:	09 f4       	brne	.+2      	; 0x3ba <APP_ledSequenceV_3+0xc2>
-     3b8:	a4 cf       	rjmp	.-184    	; 0x302 <APP_ledSequenceV_3+0xa>
+     3b6:	09 f4       	brne	.+2      	; 0x3ba <APP_start+0xc2>
+     3b8:	a4 cf       	rjmp	.-184    	; 0x302 <APP_start+0xa>
 				{
 					BUTTON_read(BUTTON_1_PORT, BUTTON_1_Pin, &button1State);
      3ba:	ae 01       	movw	r20, r28
@@ -602,8 +601,8 @@ void APP_ledSequenceV_3 (void)
 				while(button1State)
      3c8:	89 81       	ldd	r24, Y+1	; 0x01
      3ca:	81 11       	cpse	r24, r1
-     3cc:	f6 cf       	rjmp	.-20     	; 0x3ba <APP_ledSequenceV_3+0xc2>
-     3ce:	99 cf       	rjmp	.-206    	; 0x302 <APP_ledSequenceV_3+0xa>
+     3cc:	f6 cf       	rjmp	.-20     	; 0x3ba <APP_start+0xc2>
+     3ce:	99 cf       	rjmp	.-206    	; 0x302 <APP_start+0xa>
 
 000003d0 <BUTTON_init>:
 
@@ -845,8 +844,8 @@ int main(void)
      450:	0e 94 8d 00 	call	0x11a	; 0x11a <APP_init>
     while (1) 
     {
-		APP_ledSequenceV_3 ();
-     454:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <APP_ledSequenceV_3>
+		APP_start ();
+     454:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <APP_start>
 		
     }
      458:	fd cf       	rjmp	.-6      	; 0x454 <main+0x4>
@@ -1621,12 +1620,6 @@ ISR(EXT_INT_2)
      896:	18 95       	reti
 
 00000898 <timer_init>:
-{
-	enu_timer_error_t returnValue = TIMER_OK;
-	
-	for (uint8_t_ counter = 0; counter < NUMBER_OF_TIMERS_USED; counter++)
-	{
-		switch(str_timer_config[counter].timerUsed)
      898:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <str_timer_config>
      89c:	81 30       	cpi	r24, 0x01	; 1
      89e:	09 f1       	breq	.+66     	; 0x8e2 <timer_init+0x4a>
@@ -1634,9 +1627,6 @@ ISR(EXT_INT_2)
      8a2:	82 30       	cpi	r24, 0x02	; 2
      8a4:	c1 f1       	breq	.+112    	; 0x916 <timer_init+0x7e>
      8a6:	54 c0       	rjmp	.+168    	; 0x950 <timer_init+0xb8>
-		{
-			case TIMER_0:
-			switch(str_timer_config[counter].waveformUsed)
      8a8:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <str_timer_config+0x1>
      8ac:	81 30       	cpi	r24, 0x01	; 1
      8ae:	09 f4       	brne	.+2      	; 0x8b2 <timer_init+0x1a>
@@ -1645,90 +1635,51 @@ ISR(EXT_INT_2)
      8b4:	82 30       	cpi	r24, 0x02	; 2
      8b6:	59 f0       	breq	.+22     	; 0x8ce <timer_init+0x36>
      8b8:	4d c0       	rjmp	.+154    	; 0x954 <timer_init+0xbc>
-			{
-				case TIMER_OV:
-				/*Choosing Normal Mode*/
-				CLR_BIT(TCCR0,WGM01); CLR_BIT(TCCR0,WGM00);
      8ba:	83 b7       	in	r24, 0x33	; 51
      8bc:	87 7f       	andi	r24, 0xF7	; 247
      8be:	83 bf       	out	0x33, r24	; 51
      8c0:	83 b7       	in	r24, 0x33	; 51
      8c2:	8f 7b       	andi	r24, 0xBF	; 191
      8c4:	83 bf       	out	0x33, r24	; 51
-				/*Enabling OVF Interrupt 0*/
-				SET_BIT(TIMSK,TOIE0);
      8c6:	89 b7       	in	r24, 0x39	; 57
      8c8:	81 60       	ori	r24, 0x01	; 1
      8ca:	89 bf       	out	0x39, r24	; 57
-				//SET_BIT(TIMSK,TOIE0);
-				break;
      8cc:	3f c0       	rjmp	.+126    	; 0x94c <timer_init+0xb4>
-				
-				case TIMER_CTC:
-				/*Choosing CTC Mode*/
-				SET_BIT(TCCR0,WGM01); CLR_BIT(TCCR0,WGM00);
      8ce:	83 b7       	in	r24, 0x33	; 51
      8d0:	88 60       	ori	r24, 0x08	; 8
      8d2:	83 bf       	out	0x33, r24	; 51
      8d4:	83 b7       	in	r24, 0x33	; 51
      8d6:	8f 7b       	andi	r24, 0xBF	; 191
      8d8:	83 bf       	out	0x33, r24	; 51
-				/*Enabling CTC Interrupt 0*/
-				SET_BIT(TIMSK,OCIE0);
      8da:	89 b7       	in	r24, 0x39	; 57
      8dc:	82 60       	ori	r24, 0x02	; 2
      8de:	89 bf       	out	0x39, r24	; 57
-				break;
      8e0:	35 c0       	rjmp	.+106    	; 0x94c <timer_init+0xb4>
-				break;
-			}
-			break;
-			
-			case TIMER_1:
-			switch(str_timer_config[counter].waveformUsed)
      8e2:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <str_timer_config+0x1>
      8e6:	88 23       	and	r24, r24
      8e8:	19 f0       	breq	.+6      	; 0x8f0 <timer_init+0x58>
      8ea:	83 30       	cpi	r24, 0x03	; 3
      8ec:	a8 f5       	brcc	.+106    	; 0x958 <timer_init+0xc0>
      8ee:	2e c0       	rjmp	.+92     	; 0x94c <timer_init+0xb4>
-			{
-				case TIMER_OV:
-				CLR_BIT(TCCR1A,COM1A1);
      8f0:	8f b5       	in	r24, 0x2f	; 47
      8f2:	8f 77       	andi	r24, 0x7F	; 127
      8f4:	8f bd       	out	0x2f, r24	; 47
-				CLR_BIT(TCCR1A,COM1A0);
      8f6:	8f b5       	in	r24, 0x2f	; 47
      8f8:	8f 7b       	andi	r24, 0xBF	; 191
      8fa:	8f bd       	out	0x2f, r24	; 47
-				
-				CLR_BIT(TCCR1B,WGM13);
      8fc:	8e b5       	in	r24, 0x2e	; 46
      8fe:	8f 7e       	andi	r24, 0xEF	; 239
      900:	8e bd       	out	0x2e, r24	; 46
-				CLR_BIT(TCCR1B,WGM12);
      902:	8e b5       	in	r24, 0x2e	; 46
      904:	87 7f       	andi	r24, 0xF7	; 247
      906:	8e bd       	out	0x2e, r24	; 46
-				CLR_BIT(TCCR1A,WGM11);
      908:	8f b5       	in	r24, 0x2f	; 47
      90a:	8d 7f       	andi	r24, 0xFD	; 253
      90c:	8f bd       	out	0x2f, r24	; 47
-				CLR_BIT(TCCR1A,WGM10);
      90e:	8f b5       	in	r24, 0x2f	; 47
      910:	8e 7f       	andi	r24, 0xFE	; 254
      912:	8f bd       	out	0x2f, r24	; 47
-				
-				//SET_BIT(TIMSK, TOIE1);
-				break;
      914:	1b c0       	rjmp	.+54     	; 0x94c <timer_init+0xb4>
-				break;
-			}
-			break;
-			
-			case TIMER_2:
-			switch(str_timer_config[counter].waveformUsed)
      916:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <str_timer_config+0x1>
      91a:	81 30       	cpi	r24, 0x01	; 1
      91c:	b9 f0       	breq	.+46     	; 0x94c <timer_init+0xb4>
@@ -1736,92 +1687,40 @@ ISR(EXT_INT_2)
      920:	82 30       	cpi	r24, 0x02	; 2
      922:	59 f0       	breq	.+22     	; 0x93a <timer_init+0xa2>
      924:	1b c0       	rjmp	.+54     	; 0x95c <timer_init+0xc4>
-			{
-				case TIMER_OV:
-				/*Choosing Normal Mode*/
-				CLR_BIT(TCCR2,WGM21); CLR_BIT(TCCR2,WGM20);
      926:	85 b5       	in	r24, 0x25	; 37
      928:	87 7f       	andi	r24, 0xF7	; 247
      92a:	85 bd       	out	0x25, r24	; 37
      92c:	85 b5       	in	r24, 0x25	; 37
      92e:	8f 7b       	andi	r24, 0xBF	; 191
      930:	85 bd       	out	0x25, r24	; 37
-				/*Enabling OVF Interrupt 0*/
-				SET_BIT(TIMSK,TOIE2);
      932:	89 b7       	in	r24, 0x39	; 57
      934:	80 64       	ori	r24, 0x40	; 64
      936:	89 bf       	out	0x39, r24	; 57
-				break;
      938:	09 c0       	rjmp	.+18     	; 0x94c <timer_init+0xb4>
-				
-				case TIMER_CTC:
-				/*Choosing CTC Mode*/
-				SET_BIT(TCCR0,WGM21); CLR_BIT(TCCR0,WGM20);
      93a:	83 b7       	in	r24, 0x33	; 51
      93c:	88 60       	ori	r24, 0x08	; 8
      93e:	83 bf       	out	0x33, r24	; 51
      940:	83 b7       	in	r24, 0x33	; 51
      942:	8f 7b       	andi	r24, 0xBF	; 191
      944:	83 bf       	out	0x33, r24	; 51
-				/*Enabling CTC Interrupt 0*/
-				SET_BIT(TIMSK,OCIE2);
      946:	89 b7       	in	r24, 0x39	; 57
      948:	80 68       	ori	r24, 0x80	; 128
      94a:	89 bf       	out	0x39, r24	; 57
      94c:	80 e0       	ldi	r24, 0x00	; 0
      94e:	07 c0       	rjmp	.+14     	; 0x95e <timer_init+0xc6>
-				returnValue = TIMER_NOK;
-				break;
-			}
-			break;
-			default:
-			returnValue =  TIMER_WRONG_TIMER_USED;
      950:	81 e0       	ldi	r24, 0x01	; 1
      952:	05 c0       	rjmp	.+10     	; 0x95e <timer_init+0xc6>
-	for (uint8_t_ counter = 0; counter < NUMBER_OF_TIMERS_USED; counter++)
-	{
-		switch(str_timer_config[counter].timerUsed)
-		{
-			case TIMER_0:
-			switch(str_timer_config[counter].waveformUsed)
      954:	83 e0       	ldi	r24, 0x03	; 3
      956:	03 c0       	rjmp	.+6      	; 0x95e <timer_init+0xc6>
-				break;
-			}
-			break;
-			
-			case TIMER_1:
-			switch(str_timer_config[counter].waveformUsed)
      958:	83 e0       	ldi	r24, 0x03	; 3
      95a:	01 c0       	rjmp	.+2      	; 0x95e <timer_init+0xc6>
-				break;
-			}
-			break;
-			
-			case TIMER_2:
-			switch(str_timer_config[counter].waveformUsed)
      95c:	83 e0       	ldi	r24, 0x03	; 3
-		{
-			break;
-		}
-	}
-	/*Enabling Global Interrupt*/
-	SET_BIT(SREG, Ibit);
      95e:	9f b7       	in	r25, 0x3f	; 63
      960:	90 68       	ori	r25, 0x80	; 128
      962:	9f bf       	out	0x3f, r25	; 63
-	
-	return returnValue;
-}
      964:	08 95       	ret
 
 00000966 <timer_set_time>:
-*											TIMER_WRONG_TIMER_USED = 1
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ f32_desiredTime)
-{
      966:	cf 92       	push	r12
      968:	df 92       	push	r13
      96a:	ef 92       	push	r14
@@ -1829,12 +1728,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      96e:	28 2f       	mov	r18, r24
      970:	cb 01       	movw	r24, r22
      972:	ba 01       	movw	r22, r20
-	enu_timer_error_t returnValue = TIMER_OK;
-	uint32_t_ uint32_tickTime = 0;
-	uint32_t_ uint32_numberOfTicks = 0;
-	u16_t_ uint16_TCNTValue = 0;
-	
-	switch(enu_a_timerUsed)
      974:	21 30       	cpi	r18, 0x01	; 1
      976:	09 f4       	brne	.+2      	; 0x97a <timer_set_time+0x14>
      978:	55 c0       	rjmp	.+170    	; 0xa24 <timer_set_time+0xbe>
@@ -1843,29 +1736,14 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      97e:	09 f4       	brne	.+2      	; 0x982 <timer_set_time+0x1c>
      980:	aa c0       	rjmp	.+340    	; 0xad6 <timer_set_time+0x170>
      982:	06 c1       	rjmp	.+524    	; 0xb90 <timer_set_time+0x22a>
-	{
-		case TIMER_0:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
      984:	20 91 63 00 	lds	r18, 0x0063	; 0x800063 <str_timer_config+0x1>
      988:	22 23       	and	r18, r18
      98a:	29 f0       	breq	.+10     	; 0x996 <timer_set_time+0x30>
      98c:	23 30       	cpi	r18, 0x03	; 3
      98e:	08 f4       	brcc	.+2      	; 0x992 <timer_set_time+0x2c>
      990:	01 c1       	rjmp	.+514    	; 0xb94 <timer_set_time+0x22e>
-			case TIMER_PWM:
-			/*DO NOTHING*/
-			break;
-			
-			default:
-			returnValue = TIMER_NOK;
      992:	83 e0       	ldi	r24, 0x03	; 3
      994:	0a c1       	rjmp	.+532    	; 0xbaa <timer_set_time+0x244>
-		case TIMER_0:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      996:	20 e0       	ldi	r18, 0x00	; 0
      998:	30 e0       	ldi	r19, 0x00	; 0
      99a:	4a e7       	ldi	r20, 0x7A	; 122
@@ -1873,12 +1751,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      99e:	0e 94 00 08 	call	0x1000	; 0x1000 <__mulsf3>
      9a2:	6b 01       	movw	r12, r22
      9a4:	7c 01       	movw	r14, r24
-	{
-		case TIMER_0:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
      9a6:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <str_timer_config+0x2>
      9aa:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <str_timer_config+0x3>
      9ae:	96 95       	lsr	r25
@@ -1887,7 +1759,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      9b4:	87 95       	ror	r24
      9b6:	96 95       	lsr	r25
      9b8:	87 95       	ror	r24
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      9ba:	bc 01       	movw	r22, r24
      9bc:	80 e0       	ldi	r24, 0x00	; 0
      9be:	90 e0       	ldi	r25, 0x00	; 0
@@ -1898,8 +1769,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      9ca:	b6 01       	movw	r22, r12
      9cc:	0e 94 d1 06 	call	0xda2	; 0xda2 <__divsf3>
      9d0:	0e 94 43 07 	call	0xe86	; 0xe86 <__fixunssfsi>
-			
-			gl_uint32_timer0NumberOfOVFs = uint32_numberOfTicks / 256;
      9d4:	c7 2e       	mov	r12, r23
      9d6:	d8 2e       	mov	r13, r24
      9d8:	e9 2e       	mov	r14, r25
@@ -1908,18 +1777,12 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      9e0:	d0 92 7f 00 	sts	0x007F, r13	; 0x80007f <gl_uint32_timer0NumberOfOVFs+0x1>
      9e4:	e0 92 80 00 	sts	0x0080, r14	; 0x800080 <gl_uint32_timer0NumberOfOVFs+0x2>
      9e8:	f0 92 81 00 	sts	0x0081, r15	; 0x800081 <gl_uint32_timer0NumberOfOVFs+0x3>
-			gl_uint8_timer0RemTicks = uint32_numberOfTicks % 256;
      9ec:	60 93 7d 00 	sts	0x007D, r22	; 0x80007d <gl_uint8_timer0RemTicks>
-			
-			if (gl_uint8_timer0RemTicks)
      9f0:	66 23       	and	r22, r22
      9f2:	09 f4       	brne	.+2      	; 0x9f6 <timer_set_time+0x90>
      9f4:	d1 c0       	rjmp	.+418    	; 0xb98 <timer_set_time+0x232>
-			{
-				TCNT0 = 256 - gl_uint8_timer0RemTicks;
      9f6:	61 95       	neg	r22
      9f8:	62 bf       	out	0x32, r22	; 50
-				gl_uint32_timer0NumberOfOVFs++;
      9fa:	80 91 7e 00 	lds	r24, 0x007E	; 0x80007e <gl_uint32_timer0NumberOfOVFs>
      9fe:	90 91 7f 00 	lds	r25, 0x007F	; 0x80007f <gl_uint32_timer0NumberOfOVFs+0x1>
      a02:	a0 91 80 00 	lds	r26, 0x0080	; 0x800080 <gl_uint32_timer0NumberOfOVFs+0x2>
@@ -1931,40 +1794,16 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      a14:	90 93 7f 00 	sts	0x007F, r25	; 0x80007f <gl_uint32_timer0NumberOfOVFs+0x1>
      a18:	a0 93 80 00 	sts	0x0080, r26	; 0x800080 <gl_uint32_timer0NumberOfOVFs+0x2>
      a1c:	b0 93 81 00 	sts	0x0081, r27	; 0x800081 <gl_uint32_timer0NumberOfOVFs+0x3>
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ f32_desiredTime)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      a20:	80 e0       	ldi	r24, 0x00	; 0
      a22:	c3 c0       	rjmp	.+390    	; 0xbaa <timer_set_time+0x244>
-			break;
-		}
-		break;
-		
-		case TIMER_1:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
      a24:	20 91 67 00 	lds	r18, 0x0067	; 0x800067 <counter>
      a28:	22 23       	and	r18, r18
      a2a:	29 f0       	breq	.+10     	; 0xa36 <timer_set_time+0xd0>
      a2c:	23 30       	cpi	r18, 0x03	; 3
      a2e:	08 f4       	brcc	.+2      	; 0xa32 <timer_set_time+0xcc>
      a30:	b5 c0       	rjmp	.+362    	; 0xb9c <timer_set_time+0x236>
-			case TIMER_PWM:
-			/*DO NOTHING*/
-			break;
-			
-			default:
-			returnValue = TIMER_NOK;
      a32:	83 e0       	ldi	r24, 0x03	; 3
      a34:	ba c0       	rjmp	.+372    	; 0xbaa <timer_set_time+0x244>
-		case TIMER_1:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      a36:	20 e0       	ldi	r18, 0x00	; 0
      a38:	30 e0       	ldi	r19, 0x00	; 0
      a3a:	4a e7       	ldi	r20, 0x7A	; 122
@@ -1972,12 +1811,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      a3e:	0e 94 00 08 	call	0x1000	; 0x1000 <__mulsf3>
      a42:	6b 01       	movw	r12, r22
      a44:	7c 01       	movw	r14, r24
-		
-		case TIMER_1:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
      a46:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <blinkMode>
      a4a:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <EXTINT_2_callBack>
      a4e:	96 95       	lsr	r25
@@ -1986,7 +1819,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      a54:	87 95       	ror	r24
      a56:	96 95       	lsr	r25
      a58:	87 95       	ror	r24
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      a5a:	bc 01       	movw	r22, r24
      a5c:	80 e0       	ldi	r24, 0x00	; 0
      a5e:	90 e0       	ldi	r25, 0x00	; 0
@@ -1997,8 +1829,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      a6a:	b6 01       	movw	r22, r12
      a6c:	0e 94 d1 06 	call	0xda2	; 0xda2 <__divsf3>
      a70:	0e 94 43 07 	call	0xe86	; 0xe86 <__fixunssfsi>
-			
-			gl_uint32_timer1NumberOfOVFs = uint32_numberOfTicks / 65536;
      a74:	6c 01       	movw	r12, r24
      a76:	ee 24       	eor	r14, r14
      a78:	ff 24       	eor	r15, r15
@@ -2006,31 +1836,21 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      a7e:	d0 92 7a 00 	sts	0x007A, r13	; 0x80007a <gl_uint32_timer1NumberOfOVFs+0x1>
      a82:	e0 92 7b 00 	sts	0x007B, r14	; 0x80007b <gl_uint32_timer1NumberOfOVFs+0x2>
      a86:	f0 92 7c 00 	sts	0x007C, r15	; 0x80007c <gl_uint32_timer1NumberOfOVFs+0x3>
-			gl_uint16_timer1RemTicks = uint32_numberOfTicks % 65536;
      a8a:	70 93 78 00 	sts	0x0078, r23	; 0x800078 <gl_uint16_timer1RemTicks+0x1>
      a8e:	60 93 77 00 	sts	0x0077, r22	; 0x800077 <gl_uint16_timer1RemTicks>
-			
-			if (gl_uint16_timer1RemTicks)
      a92:	61 15       	cp	r22, r1
      a94:	71 05       	cpc	r23, r1
      a96:	09 f4       	brne	.+2      	; 0xa9a <timer_set_time+0x134>
      a98:	83 c0       	rjmp	.+262    	; 0xba0 <timer_set_time+0x23a>
-			{
-				uint16_TCNTValue = 65536 - gl_uint16_timer1RemTicks;
      a9a:	71 95       	neg	r23
      a9c:	61 95       	neg	r22
      a9e:	71 09       	sbc	r23, r1
-				
-				TCNT1L |= uint16_TCNTValue;
      aa0:	8c b5       	in	r24, 0x2c	; 44
      aa2:	86 2b       	or	r24, r22
      aa4:	8c bd       	out	0x2c, r24	; 44
-				TCNT1H |= (uint16_TCNTValue>>8);
      aa6:	8d b5       	in	r24, 0x2d	; 45
      aa8:	87 2b       	or	r24, r23
      aaa:	8d bd       	out	0x2d, r24	; 45
-				
-				gl_uint32_timer2NumberOfOVFs++;
      aac:	80 91 73 00 	lds	r24, 0x0073	; 0x800073 <gl_uint32_timer2NumberOfOVFs>
      ab0:	90 91 74 00 	lds	r25, 0x0074	; 0x800074 <gl_uint32_timer2NumberOfOVFs+0x1>
      ab4:	a0 91 75 00 	lds	r26, 0x0075	; 0x800075 <gl_uint32_timer2NumberOfOVFs+0x2>
@@ -2042,40 +1862,16 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      ac6:	90 93 74 00 	sts	0x0074, r25	; 0x800074 <gl_uint32_timer2NumberOfOVFs+0x1>
      aca:	a0 93 75 00 	sts	0x0075, r26	; 0x800075 <gl_uint32_timer2NumberOfOVFs+0x2>
      ace:	b0 93 76 00 	sts	0x0076, r27	; 0x800076 <gl_uint32_timer2NumberOfOVFs+0x3>
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ f32_desiredTime)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      ad2:	80 e0       	ldi	r24, 0x00	; 0
      ad4:	6a c0       	rjmp	.+212    	; 0xbaa <timer_set_time+0x244>
-			break;
-		}
-		break;
-		
-		case TIMER_2:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
      ad6:	20 91 6b 00 	lds	r18, 0x006B	; 0x80006b <EXTINT_1_callBack>
      ada:	22 23       	and	r18, r18
      adc:	29 f0       	breq	.+10     	; 0xae8 <timer_set_time+0x182>
      ade:	23 30       	cpi	r18, 0x03	; 3
      ae0:	08 f4       	brcc	.+2      	; 0xae4 <timer_set_time+0x17e>
      ae2:	60 c0       	rjmp	.+192    	; 0xba4 <timer_set_time+0x23e>
-			case TIMER_PWM:
-			/*DO NOTHING*/
-			break;
-			
-			default:
-			returnValue = TIMER_NOK;
      ae4:	83 e0       	ldi	r24, 0x03	; 3
      ae6:	61 c0       	rjmp	.+194    	; 0xbaa <timer_set_time+0x244>
-		case TIMER_2:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      ae8:	20 e0       	ldi	r18, 0x00	; 0
      aea:	30 e0       	ldi	r19, 0x00	; 0
      aec:	4a e7       	ldi	r20, 0x7A	; 122
@@ -2083,12 +1879,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      af0:	0e 94 00 08 	call	0x1000	; 0x1000 <__mulsf3>
      af4:	6b 01       	movw	r12, r22
      af6:	7c 01       	movw	r14, r24
-		
-		case TIMER_2:
-		switch(str_timer_config[enu_a_timerUsed].waveformUsed)
-		{
-			case TIMER_OV:
-			uint32_tickTime = str_timer_config[enu_a_timerUsed].prescalerUsed / XTAL_FREQ;
      af8:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <EXTINT_1_callBack+0x1>
      afc:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <EXTINT_0_callBack>
      b00:	96 95       	lsr	r25
@@ -2097,7 +1887,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      b06:	87 95       	ror	r24
      b08:	96 95       	lsr	r25
      b0a:	87 95       	ror	r24
-			uint32_numberOfTicks = ((f32_desiredTime*1000)/uint32_tickTime);
      b0c:	bc 01       	movw	r22, r24
      b0e:	80 e0       	ldi	r24, 0x00	; 0
      b10:	90 e0       	ldi	r25, 0x00	; 0
@@ -2108,8 +1897,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      b1c:	b6 01       	movw	r22, r12
      b1e:	0e 94 d1 06 	call	0xda2	; 0xda2 <__divsf3>
      b22:	0e 94 43 07 	call	0xe86	; 0xe86 <__fixunssfsi>
-			
-			gl_uint32_timer2NumberOfOVFs = uint32_numberOfTicks / 256;
      b26:	c7 2e       	mov	r12, r23
      b28:	d8 2e       	mov	r13, r24
      b2a:	e9 2e       	mov	r14, r25
@@ -2118,7 +1905,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      b32:	d0 92 74 00 	sts	0x0074, r13	; 0x800074 <gl_uint32_timer2NumberOfOVFs+0x1>
      b36:	e0 92 75 00 	sts	0x0075, r14	; 0x800075 <gl_uint32_timer2NumberOfOVFs+0x2>
      b3a:	f0 92 76 00 	sts	0x0076, r15	; 0x800076 <gl_uint32_timer2NumberOfOVFs+0x3>
-			gl_uint8_timer2RemTicks = uint32_numberOfTicks % 256;
      b3e:	dc 01       	movw	r26, r24
      b40:	cb 01       	movw	r24, r22
      b42:	99 27       	eor	r25, r25
@@ -2128,18 +1914,13 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      b4c:	90 93 70 00 	sts	0x0070, r25	; 0x800070 <gl_uint8_timer2RemTicks+0x1>
      b50:	a0 93 71 00 	sts	0x0071, r26	; 0x800071 <gl_uint8_timer2RemTicks+0x2>
      b54:	b0 93 72 00 	sts	0x0072, r27	; 0x800072 <gl_uint8_timer2RemTicks+0x3>
-			
-			if (gl_uint8_timer2RemTicks)
      b58:	00 97       	sbiw	r24, 0x00	; 0
      b5a:	a1 05       	cpc	r26, r1
      b5c:	b1 05       	cpc	r27, r1
      b5e:	21 f1       	breq	.+72     	; 0xba8 <timer_set_time+0x242>
-			{
-				TCNT2 = 256 - gl_uint8_timer2RemTicks;
      b60:	68 2f       	mov	r22, r24
      b62:	61 95       	neg	r22
      b64:	64 bd       	out	0x24, r22	; 36
-				gl_uint32_timer2NumberOfOVFs++;
      b66:	80 91 73 00 	lds	r24, 0x0073	; 0x800073 <gl_uint32_timer2NumberOfOVFs>
      b6a:	90 91 74 00 	lds	r25, 0x0074	; 0x800074 <gl_uint32_timer2NumberOfOVFs+0x1>
      b6e:	a0 91 75 00 	lds	r26, 0x0075	; 0x800075 <gl_uint32_timer2NumberOfOVFs+0x2>
@@ -2151,28 +1932,10 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      b80:	90 93 74 00 	sts	0x0074, r25	; 0x800074 <gl_uint32_timer2NumberOfOVFs+0x1>
      b84:	a0 93 75 00 	sts	0x0075, r26	; 0x800075 <gl_uint32_timer2NumberOfOVFs+0x2>
      b88:	b0 93 76 00 	sts	0x0076, r27	; 0x800076 <gl_uint32_timer2NumberOfOVFs+0x3>
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ f32_desiredTime)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      b8c:	80 e0       	ldi	r24, 0x00	; 0
      b8e:	0d c0       	rjmp	.+26     	; 0xbaa <timer_set_time+0x244>
-			break;
-		}
-		break;
-		
-		default:
-		returnValue =  TIMER_WRONG_TIMER_USED;
      b90:	81 e0       	ldi	r24, 0x01	; 1
      b92:	0b c0       	rjmp	.+22     	; 0xbaa <timer_set_time+0x244>
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ f32_desiredTime)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      b94:	80 e0       	ldi	r24, 0x00	; 0
      b96:	09 c0       	rjmp	.+18     	; 0xbaa <timer_set_time+0x244>
      b98:	80 e0       	ldi	r24, 0x00	; 0
@@ -2184,12 +1947,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      ba4:	80 e0       	ldi	r24, 0x00	; 0
      ba6:	01 c0       	rjmp	.+2      	; 0xbaa <timer_set_time+0x244>
      ba8:	80 e0       	ldi	r24, 0x00	; 0
-		returnValue =  TIMER_WRONG_TIMER_USED;
-		break;
-		
-	}
-	return returnValue;
-}
      baa:	ff 90       	pop	r15
      bac:	ef 90       	pop	r14
      bae:	df 90       	pop	r13
@@ -2197,12 +1954,6 @@ enu_timer_error_t timer_set_time(enu_timer_number_t enu_a_timerUsed, float32_t_ 
      bb2:	08 95       	ret
 
 00000bb4 <timer_resume>:
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
-	switch(enu_a_timerUsed)
      bb4:	81 30       	cpi	r24, 0x01	; 1
      bb6:	09 f4       	brne	.+2      	; 0xbba <timer_resume+0x6>
      bb8:	52 c0       	rjmp	.+164    	; 0xc5e <timer_resume+0xaa>
@@ -2211,9 +1962,6 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      bbe:	09 f4       	brne	.+2      	; 0xbc2 <timer_resume+0xe>
      bc0:	9b c0       	rjmp	.+310    	; 0xcf8 <timer_resume+0x144>
      bc2:	e7 c0       	rjmp	.+462    	; 0xd92 <timer_resume+0x1de>
-	{
-		case TIMER_0:
-		switch(str_timer_config[TIMER_0].prescalerUsed)
      bc4:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <str_timer_config+0x2>
      bc8:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <str_timer_config+0x3>
      bcc:	80 34       	cpi	r24, 0x40	; 64
@@ -2234,9 +1982,6 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      bea:	94 40       	sbci	r25, 0x04	; 4
      bec:	69 f1       	breq	.+90     	; 0xc48 <timer_resume+0x94>
      bee:	d3 c0       	rjmp	.+422    	; 0xd96 <timer_resume+0x1e2>
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
      bf0:	83 b7       	in	r24, 0x33	; 51
      bf2:	8b 7f       	andi	r24, 0xFB	; 251
      bf4:	83 bf       	out	0x33, r24	; 51
@@ -2246,23 +1991,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      bfc:	83 b7       	in	r24, 0x33	; 51
      bfe:	81 60       	ori	r24, 0x01	; 1
      c00:	83 bf       	out	0x33, r24	; 51
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c02:	80 e0       	ldi	r24, 0x00	; 0
-		case TIMER_0:
-		switch(str_timer_config[TIMER_0].prescalerUsed)
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
      c04:	08 95       	ret
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
      c06:	83 b7       	in	r24, 0x33	; 51
      c08:	8b 7f       	andi	r24, 0xFB	; 251
      c0a:	83 bf       	out	0x33, r24	; 51
@@ -2272,23 +2002,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c12:	83 b7       	in	r24, 0x33	; 51
      c14:	8e 7f       	andi	r24, 0xFE	; 254
      c16:	83 bf       	out	0x33, r24	; 51
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c18:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
-			break;
      c1a:	08 95       	ret
-			
-			case TIMER_PRESCLNG_64:
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
      c1c:	83 b7       	in	r24, 0x33	; 51
      c1e:	8b 7f       	andi	r24, 0xFB	; 251
      c20:	83 bf       	out	0x33, r24	; 51
@@ -2298,23 +2013,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c28:	83 b7       	in	r24, 0x33	; 51
      c2a:	81 60       	ori	r24, 0x01	; 1
      c2c:	83 bf       	out	0x33, r24	; 51
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c2e:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
-			break;
-			
-			case TIMER_PRESCLNG_64:
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
      c30:	08 95       	ret
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
      c32:	83 b7       	in	r24, 0x33	; 51
      c34:	84 60       	ori	r24, 0x04	; 4
      c36:	83 bf       	out	0x33, r24	; 51
@@ -2324,23 +2024,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c3e:	83 b7       	in	r24, 0x33	; 51
      c40:	8e 7f       	andi	r24, 0xFE	; 254
      c42:	83 bf       	out	0x33, r24	; 51
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c44:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR0, CS02);	SET_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
-			break;
      c46:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
      c48:	83 b7       	in	r24, 0x33	; 51
      c4a:	84 60       	ori	r24, 0x04	; 4
      c4c:	83 bf       	out	0x33, r24	; 51
@@ -2350,26 +2035,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c54:	83 b7       	in	r24, 0x33	; 51
      c56:	81 60       	ori	r24, 0x01	; 1
      c58:	83 bf       	out	0x33, r24	; 51
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c5a:	80 e0       	ldi	r24, 0x00	; 0
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	CLR_BIT(TCCR0, CS00);
-			break;
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
      c5c:	08 95       	ret
-			default: returnValue = TIMER_NOK;	break;
-		}
-		break;
-		
-		case TIMER_1:
-		switch(str_timer_config[TIMER_1].prescalerUsed)
      c5e:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <blinkMode>
      c62:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <EXTINT_2_callBack>
      c66:	80 34       	cpi	r24, 0x40	; 64
@@ -2390,9 +2057,6 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c84:	94 40       	sbci	r25, 0x04	; 4
      c86:	69 f1       	breq	.+90     	; 0xce2 <timer_resume+0x12e>
      c88:	88 c0       	rjmp	.+272    	; 0xd9a <timer_resume+0x1e6>
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
      c8a:	8e b5       	in	r24, 0x2e	; 46
      c8c:	8b 7f       	andi	r24, 0xFB	; 251
      c8e:	8e bd       	out	0x2e, r24	; 46
@@ -2402,23 +2066,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      c96:	8e b5       	in	r24, 0x2e	; 46
      c98:	81 60       	ori	r24, 0x01	; 1
      c9a:	8e bd       	out	0x2e, r24	; 46
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      c9c:	80 e0       	ldi	r24, 0x00	; 0
-		case TIMER_1:
-		switch(str_timer_config[TIMER_1].prescalerUsed)
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
      c9e:	08 95       	ret
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
      ca0:	8e b5       	in	r24, 0x2e	; 46
      ca2:	8b 7f       	andi	r24, 0xFB	; 251
      ca4:	8e bd       	out	0x2e, r24	; 46
@@ -2428,23 +2077,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      cac:	8e b5       	in	r24, 0x2e	; 46
      cae:	8e 7f       	andi	r24, 0xFE	; 254
      cb0:	8e bd       	out	0x2e, r24	; 46
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      cb2:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
-			break;
      cb4:	08 95       	ret
-			
-			case TIMER_PRESCLNG_64:
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
      cb6:	8e b5       	in	r24, 0x2e	; 46
      cb8:	8b 7f       	andi	r24, 0xFB	; 251
      cba:	8e bd       	out	0x2e, r24	; 46
@@ -2454,23 +2088,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      cc2:	8e b5       	in	r24, 0x2e	; 46
      cc4:	81 60       	ori	r24, 0x01	; 1
      cc6:	8e bd       	out	0x2e, r24	; 46
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      cc8:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
-			break;
-			
-			case TIMER_PRESCLNG_64:
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
      cca:	08 95       	ret
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
      ccc:	8e b5       	in	r24, 0x2e	; 46
      cce:	84 60       	ori	r24, 0x04	; 4
      cd0:	8e bd       	out	0x2e, r24	; 46
@@ -2480,23 +2099,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      cd8:	8e b5       	in	r24, 0x2e	; 46
      cda:	8e 7f       	andi	r24, 0xFE	; 254
      cdc:	8e bd       	out	0x2e, r24	; 46
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      cde:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR1B, CS12);	SET_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
-			break;
      ce0:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
      ce2:	8e b5       	in	r24, 0x2e	; 46
      ce4:	84 60       	ori	r24, 0x04	; 4
      ce6:	8e bd       	out	0x2e, r24	; 46
@@ -2506,26 +2110,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      cee:	8e b5       	in	r24, 0x2e	; 46
      cf0:	81 60       	ori	r24, 0x01	; 1
      cf2:	8e bd       	out	0x2e, r24	; 46
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      cf4:	80 e0       	ldi	r24, 0x00	; 0
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	CLR_BIT(TCCR1B, CS10);
-			break;
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
      cf6:	08 95       	ret
-			default: returnValue = TIMER_NOK;	break;
-		}
-		break;
-		
-		case TIMER_2:
-		switch(str_timer_config[TIMER_1].prescalerUsed)
      cf8:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <blinkMode>
      cfc:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <EXTINT_2_callBack>
      d00:	80 34       	cpi	r24, 0x40	; 64
@@ -2546,9 +2132,6 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d1e:	94 40       	sbci	r25, 0x04	; 4
      d20:	69 f1       	breq	.+90     	; 0xd7c <timer_resume+0x1c8>
      d22:	3d c0       	rjmp	.+122    	; 0xd9e <timer_resume+0x1ea>
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
      d24:	85 b5       	in	r24, 0x25	; 37
      d26:	8b 7f       	andi	r24, 0xFB	; 251
      d28:	85 bd       	out	0x25, r24	; 37
@@ -2558,23 +2141,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d30:	85 b5       	in	r24, 0x25	; 37
      d32:	81 60       	ori	r24, 0x01	; 1
      d34:	85 bd       	out	0x25, r24	; 37
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      d36:	80 e0       	ldi	r24, 0x00	; 0
-		case TIMER_2:
-		switch(str_timer_config[TIMER_1].prescalerUsed)
-		{
-			case TIMER_PRESCLNG_1:
-			CLR_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
-			break;
      d38:	08 95       	ret
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
      d3a:	85 b5       	in	r24, 0x25	; 37
      d3c:	8b 7f       	andi	r24, 0xFB	; 251
      d3e:	85 bd       	out	0x25, r24	; 37
@@ -2584,23 +2152,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d46:	85 b5       	in	r24, 0x25	; 37
      d48:	8e 7f       	andi	r24, 0xFE	; 254
      d4a:	85 bd       	out	0x25, r24	; 37
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      d4c:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
-			break;
-			
-			case TIMER_PRESCLNG_8:
-			CLR_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
      d4e:	08 95       	ret
-			
-			case TIMER_PRESCLNG_64:
-			SET_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
      d50:	85 b5       	in	r24, 0x25	; 37
      d52:	84 60       	ori	r24, 0x04	; 4
      d54:	85 bd       	out	0x25, r24	; 37
@@ -2610,23 +2163,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d5c:	85 b5       	in	r24, 0x25	; 37
      d5e:	8e 7f       	andi	r24, 0xFE	; 254
      d60:	85 bd       	out	0x25, r24	; 37
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      d62:	80 e0       	ldi	r24, 0x00	; 0
-			CLR_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
-			
-			case TIMER_PRESCLNG_64:
-			SET_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
      d64:	08 95       	ret
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
      d66:	85 b5       	in	r24, 0x25	; 37
      d68:	84 60       	ori	r24, 0x04	; 4
      d6a:	85 bd       	out	0x25, r24	; 37
@@ -2636,23 +2174,8 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d72:	85 b5       	in	r24, 0x25	; 37
      d74:	8e 7f       	andi	r24, 0xFE	; 254
      d76:	85 bd       	out	0x25, r24	; 37
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      d78:	80 e0       	ldi	r24, 0x00	; 0
-			SET_BIT(TCCR2,CS22); CLR_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
-			
-			case TIMER_PRESCLNG_256:
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
      d7a:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
      d7c:	85 b5       	in	r24, 0x25	; 37
      d7e:	84 60       	ori	r24, 0x04	; 4
      d80:	85 bd       	out	0x25, r24	; 37
@@ -2662,57 +2185,15 @@ enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
      d88:	85 b5       	in	r24, 0x25	; 37
      d8a:	81 60       	ori	r24, 0x01	; 1
      d8c:	85 bd       	out	0x25, r24	; 37
-*											TIMER_WRONG_DESIRED_TIME = 2
-*											TIMER_NOK = 3
-*******************************************************************************/
-enu_timer_error_t timer_resume(enu_timer_number_t enu_a_timerUsed)
-{
-	enu_timer_error_t returnValue = TIMER_OK;
      d8e:	80 e0       	ldi	r24, 0x00	; 0
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	CLR_BIT(TCCR2,CS20);
-			break;
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
-			break;
      d90:	08 95       	ret
-			
-			default: returnValue = TIMER_NOK;	break;
-		}
-		break;
-		default:
-		returnValue =  TIMER_NOK;
      d92:	83 e0       	ldi	r24, 0x03	; 3
      d94:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR0, CS02);	CLR_BIT(TCCR0, CS01);	SET_BIT(TCCR0, CS00);
-			break;
-			
-			default: returnValue = TIMER_NOK;	break;
      d96:	83 e0       	ldi	r24, 0x03	; 3
      d98:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR1B, CS12);	CLR_BIT(TCCR1B, CS11);	SET_BIT(TCCR1B, CS10);
-			break;
-			
-			default: returnValue = TIMER_NOK;	break;
      d9a:	83 e0       	ldi	r24, 0x03	; 3
      d9c:	08 95       	ret
-			
-			case TIMER_PRESCLNG_1024:
-			SET_BIT(TCCR2,CS22); SET_BIT(TCCR2,CS21);	SET_BIT(TCCR2,CS20);
-			break;
-			
-			default: returnValue = TIMER_NOK;	break;
      d9e:	83 e0       	ldi	r24, 0x03	; 3
-		returnValue =  TIMER_NOK;
-		break;
-		
-	}
-	return returnValue;
-}
      da0:	08 95       	ret
 
 00000da2 <__divsf3>:

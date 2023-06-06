@@ -424,9 +424,9 @@ END GROUP
  .text.button0Task
                 0x00000194      0x164 Application/app.o
                 0x00000194                button0Task
- .text.APP_ledSequenceV_3
+ .text.APP_start
                 0x000002f8       0xd8 Application/app.o
-                0x000002f8                APP_ledSequenceV_3
+                0x000002f8                APP_start
  .text.BUTTON_init
                 0x000003d0       0x1a ECUAL/Button/button.o
                 0x000003d0                BUTTON_init
@@ -707,7 +707,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1e87
+.debug_info     0x00000000     0x1e4e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x9a6 Application/app.o
@@ -715,11 +715,11 @@ END GROUP
  .debug_info    0x00001087      0x2c9 ECUAL/LED/led.o
  .debug_info    0x00001350       0xc3 main.o
  .debug_info    0x00001413      0x1fd MCAL/DIO/dio.o
- .debug_info    0x00001610      0x1c1 MCAL/EXInt/extint.o
- .debug_info    0x000017d1      0x155 MCAL/Timer/timer_cfg.o
- .debug_info    0x00001926      0x561 MCAL/Timer/timer_program.o
+ .debug_info    0x00001610      0x188 MCAL/EXInt/extint.o
+ .debug_info    0x00001798      0x155 MCAL/Timer/timer_cfg.o
+ .debug_info    0x000018ed      0x561 MCAL/Timer/timer_program.o
 
-.debug_abbrev   0x00000000      0xba9
+.debug_abbrev   0x00000000      0xb9c
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_abbrev  0x000004a3      0x172 Application/app.o
@@ -727,11 +727,11 @@ END GROUP
  .debug_abbrev  0x000006e4       0xc6 ECUAL/LED/led.o
  .debug_abbrev  0x000007aa       0x64 main.o
  .debug_abbrev  0x0000080e       0x98 MCAL/DIO/dio.o
- .debug_abbrev  0x000008a6       0xef MCAL/EXInt/extint.o
- .debug_abbrev  0x00000995       0x84 MCAL/Timer/timer_cfg.o
- .debug_abbrev  0x00000a19      0x190 MCAL/Timer/timer_program.o
+ .debug_abbrev  0x000008a6       0xe2 MCAL/EXInt/extint.o
+ .debug_abbrev  0x00000988       0x84 MCAL/Timer/timer_cfg.o
+ .debug_abbrev  0x00000a0c      0x190 MCAL/Timer/timer_program.o
 
-.debug_line     0x00000000     0x1237
+.debug_line     0x00000000     0x1217
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000115      0x370 Application/app.o
@@ -739,9 +739,9 @@ END GROUP
  .debug_line    0x0000059a      0x17b ECUAL/LED/led.o
  .debug_line    0x00000715       0x6d main.o
  .debug_line    0x00000782      0x2f6 MCAL/DIO/dio.o
- .debug_line    0x00000a78      0x1ac MCAL/EXInt/extint.o
- .debug_line    0x00000c24       0x4c MCAL/Timer/timer_cfg.o
- .debug_line    0x00000c70      0x5c7 MCAL/Timer/timer_program.o
+ .debug_line    0x00000a78      0x18c MCAL/EXInt/extint.o
+ .debug_line    0x00000c04       0x4c MCAL/Timer/timer_cfg.o
+ .debug_line    0x00000c50      0x5c7 MCAL/Timer/timer_program.o
 
 .debug_frame    0x00000000      0x44c
  *(.debug_frame)
@@ -753,24 +753,24 @@ END GROUP
  .debug_frame   0x00000170      0x13c MCAL/EXInt/extint.o
  .debug_frame   0x000002ac      0x1a0 MCAL/Timer/timer_program.o
 
-.debug_str      0x00000000      0xae4
+.debug_str      0x00000000      0xb3e
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x399 Application/app.o
-                                0x3c0 (size before relaxing)
- .debug_str     0x0000052f       0xaf ECUAL/Button/button.o
-                                0x26f (size before relaxing)
- .debug_str     0x000005de       0x42 ECUAL/LED/led.o
-                                0x25f (size before relaxing)
- .debug_str     0x00000620       0x36 main.o
-                                0x1b3 (size before relaxing)
- .debug_str     0x00000656       0x37 MCAL/DIO/dio.o
-                                0x21e (size before relaxing)
- .debug_str     0x0000068d       0xa7 MCAL/EXInt/extint.o
-                                0x264 (size before relaxing)
- .debug_str     0x00000734      0x144 MCAL/Timer/timer_cfg.o
+ .debug_str     0x00000196      0x3a7 Application/app.o
+                                0x3ce (size before relaxing)
+ .debug_str     0x0000053d       0xaf ECUAL/Button/button.o
+                                0x286 (size before relaxing)
+ .debug_str     0x000005ec       0x42 ECUAL/LED/led.o
+                                0x276 (size before relaxing)
+ .debug_str     0x0000062e       0x36 main.o
+                                0x1c1 (size before relaxing)
+ .debug_str     0x00000664       0x37 MCAL/DIO/dio.o
+                                0x235 (size before relaxing)
+ .debug_str     0x0000069b       0x7f MCAL/EXInt/extint.o
+                                0x253 (size before relaxing)
+ .debug_str     0x0000071a      0x190 MCAL/Timer/timer_cfg.o
                                 0x2cd (size before relaxing)
- .debug_str     0x00000878      0x26c MCAL/Timer/timer_program.o
+ .debug_str     0x000008aa      0x294 MCAL/Timer/timer_program.o
                                 0x5f1 (size before relaxing)
 
 .debug_loc      0x00000000     0x172a
